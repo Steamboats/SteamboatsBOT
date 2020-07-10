@@ -1,0 +1,12 @@
+{
+  "name": "SteamboatsBOT",
+  "version": "1.0.0",
+  "description": "A BOT created for the Discord Steamboats group to help with decision making since we are fickle minded people",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
