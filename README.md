@@ -9,8 +9,8 @@ npm install
 # Initialise your .env file
 touch .env
 # Required variables: 
-# SECRET_KEY -> for connection to BOT
-# MONGO_CONNECTION -> URI for Mongoose.connect(URI...) in app.js
+# SECRET_KEY -> for connection to Discord BOT
+# MONGO_CONNECTION -> URI for MongoDB Atlas connection initialised with Mongoose.connect(URI...) in app.js
 
 # Run dev with nodemon
 npm run dev
