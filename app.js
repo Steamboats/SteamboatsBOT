@@ -3,9 +3,22 @@ const client = new Discord.Client();
 const fs = require('fs');
 const Enmap = require('enmap');
 const config = require('./config.json');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 client.config = config;
+
+mongoose.connect(process.env.MONGO_CONNECTION, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+  }, () => {
+    // Ready states (from Mongoose Documentation)
+    // 0: disconnected
+    // 1: connected -- should see this in console if running
+    // 2: connecting
+    // 3: disconnecting
+    console.log(`Mongoose connected with readyState: ${mongoose.connection.readyState}`);
+});
 
 client.on('ready', () => {
   console.log('Bot Initialised');
