@@ -3,19 +3,19 @@ A Discord BOT created to help our group make decisions since we are fickle minde
 
 ## Build Project
 ``` bash
-' Project dependency installation
+# Project dependency installation
 npm install
 
-' Initialise your .env file
+# Initialise your .env file
 touch .env
-' Required variables: 
-' SECRET_KEY -> for connection to BOT
-' MONGO_CONNECTION -> URI for Mongoose.connect(URI...) in app.js
+# Required variables: 
+# SECRET_KEY -> for connection to BOT
+# MONGO_CONNECTION -> URI for Mongoose.connect(URI...) in app.js
 
-' Run dev with nodemon
+# Run dev with nodemon
 npm run dev
 
-' Run start with node
+# Run start with node
 npm run start
 ```
 
