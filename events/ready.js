@@ -1,7 +1,7 @@
 module.exports = async client => {
     // Online
-    client.log(`${client.user.tag} is ready!`);
+    console.log(`${client.user.tag} is ready!`);
   
     // SteamboatsBOT is playing !help
-    client.user.setActivity(`${client.settings.get("default").prefix}help`, {type: "PLAYING"});
+    client.user.setActivity(`${client.config.prefix}help`, {type: "PLAYING"});
   };
