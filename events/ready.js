@@ -3,5 +3,5 @@ module.exports = async client => {
     console.log(`${client.user.tag} is ready!`);
   
     // SteamboatsBOT is playing !help
-    client.user.setActivity(`${client.config.prefix}help (Dylan's Host)`, {type: "PLAYING"});
+    client.user.setActivity(`${client.config.prefix}help`, {type: "PLAYING"});
   };
