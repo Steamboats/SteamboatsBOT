@@ -5,7 +5,7 @@ exports.run = async (client, message) => {
   try {
     const foodChoice = await Food.updateMany(
       { //select all food with unvotes >0
-        upvotes: { $gt:0 }
+        upvotes: { $ne:0 }
       },
       { // set votes to 0
         $set: {
