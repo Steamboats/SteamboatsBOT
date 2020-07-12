@@ -9,8 +9,8 @@ require('dotenv').config();
 client.config = config;
 
 mongoose.connect(process.env.MONGO_CONNECTION, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   }, () => {
     // Ready states from mongoose documentation
     const readyState = {
