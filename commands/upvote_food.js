@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 const Food = require('../models/Food');
 
 exports.run = async (client, message, args) => {
-  // Sort all food by upvotes in ascending order
   try {
+    const loading = await message.channel.send('Upvoting...');
+
     let id = args[0];
     const foodChoice = await Food.findOneAndUpdate(
       { // find
@@ -21,9 +22,34 @@ exports.run = async (client, message, args) => {
 
     if (!foodChoice) throw new Error("ID doesn't exist");
 
-    message.channel.send(`${foodChoice.title} has been upvoted by ${message.author.username} and now has ${Number(foodChoice.upvotes) + 1}`);
+    const embedMessage = {
+      title: 'Successfully Upvoted',
+      color: '#42B549',
+      description: `"**${foodChoice.title}**" has been upvoted by **"${message.author.username}"** and currently has ${Number(foodChoice.upvotes) + 1} upvotes.`,
+      timestamp: new Date(),
+    };
+
+    message.channel
+      .send({
+        embed: embedMessage
+      })
+      .then(() => {
+        // Delete loading message
+        loading.delete();
+      })
+      .catch(console.error);
   } catch(err) {
-    message.channel.send(err.message);
+    const embedMessage = {
+      title: 'An error has occurred',
+      color: '#BA1E42',
+      description: `${err.message}`,
+    }
+
+    message.channel
+      .send({
+        embed: embedMessage
+      })
+      .catch(console.error);
   }
 }
 

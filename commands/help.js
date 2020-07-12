@@ -1,35 +1,59 @@
-exports.run = (client, message, args) => {
-  /*
-  const command_overview = `You can command me to...
-  !ping - replies with 'pong show? ;)'
-  !angry - replies with 'I also angry!'
-  !jieyin - ;)
-  !jasmin - ;)
-  -- FOOD RELATED --
-  !what_to_eat - Get help to decide where to eat, the higher the upvotes for a food choice, the more likely it will be selected
-  !list_food - List out all food places in database with respective ID
-  !add_food <food @ location> - Format must be 'food @ location' for it to be added into database
-    e.g. !add_food Ramen Nagi @ Suntec City
-      -> Adds new food type Ramen Nagi @ Suntec City, ID will be automatically created
-  !upvote_food <id> - Add one upvote to a food choice -> Upvotes will increase likelihood of choice being randomly selected
-    e.g. !upvote_food 1 
-      -> upvotes food with ID 1. Can get ID by !list_food.
-  !downvote_food <id> - Decrease score of food choice by 1
-    e.g. !downvote_food 2 
-      -> downvotes food with ID 2. Can get ID by !list_food.
-  !delete_food <id> - Only authors of the choice can delete a choice
-    e.g. !delete_food 1
-      -> food at index 1 will be deleted if you are the author.
-  `
-  message.channel.send(command_overview);
-  */
+// I'm writing these here cuz there isn't indentation to worry about
+const core = `
+**!ping** - Replies with 'pong show? ;)'
 
-//trying out embeds
+**!angry** - Replies with 'I also angry!
+
+**!stats** - Shows BOT statistics
+`;
+
+const food = `
+**!what_to_eat**
+- Get help to decide where to eat. The higher the upvotes a food place has, the more likely it will get chosen
+
+**!list_food**
+- List out all food places with their respective IDs from the database
+
+**!add_food** *<food @ location>*
+- Add food to database, format **MUST** be *food @ location*
+\`e.g. !add_food Ramen Nagi @ Suntec City\`
+
+**!upvote_food / !downvote_food** *<id>*
+- Upvote / Downvote food -> The higher the upvotes, the more likely it will be chosen
+\`e.g. !upvote_food 1 -> upvotes food with ID 1
+e.g. !downvote_food 2 -> downvotes food with ID 2\`
+
+**!delete_food** *<id>*
+- Deletes a food choice. Only the authors can delete their own food choice.
+\`e.g. !delete_food 1 -> Food with ID 1 will be deleted if you are the author.\`
+`;
+
+const naughty_list = `
+**!jieyin**
+- The *"purest"* element on **EARTH**
+
+**!jasmin**
+- :cactus:
+`;
+
+
+exports.run = (client, message, args) => {
+  // Add more fun stuff to here!
+  const description_list = [
+    'Why do I have to help...?',
+    'Hello, how many times you do !help already! **YOU** think I so free?',
+    'You know, sometimes I, too, think about quitting my job... :\')',
+    'What if I don\'t want to help!',
+    ':cactus:',
+    'Can someone notice... I am just human tooooooo',
+    'How is this not already common knowledge?!',
+  ];
+  const description = description_list[Math.floor(Math.random() * description_list.length)];
 
   message.channel.send({
     "embed": {
         "title": "__**Help & Commands**__",
-        "description": "Some bot info",
+        "description": description,
         "color": 13858303,
         "fields": [
           {
@@ -39,7 +63,7 @@ exports.run = (client, message, args) => {
           },
           {
             "name": "**__Core__**",
-            "value": "**!ping** - repies with 'pong show? ;)'\n\n**!angry** - replies with 'I also angry!\n\n**!stats** - shows bot statistics"
+            "value": core
           },
           {
             //blank field for spacing
@@ -48,7 +72,7 @@ exports.run = (client, message, args) => {
           },
           {
             "name": "**__FOOOOOOD__**",
-            "value": "**!what_to_eat**\nGet help to decide where to eat, the higher the upvotes for a food choice, the more likely it will be selected\n\n**!list_food**\nList out all food places in database with respective ID\n\n**!add_food** *<food @ location>*\nFormat must be '*food* @ *location*' for it to be added into database\n\n**!upvote_food** *<id>*\nAdd one upvote to a food choice -> Upvotes will increase likelihood of choice being randomly selected\n`e.g. !upvote_food 1 \n    -> upvotes food with ID 1. Can get ID by !list_food.`\n\n**!downvote_food** *<id>*\nDecrease score of food choice by 1\n`e.g. !downvote_food 2 \n    -> downvotes food with ID 2. Can get ID by !list_food.`\n\n**!delete_food** *<id>*\nDeletes a food choice. Only the author can delete their own food choice.\n`e.g. !delete_food 1\n    -> food at index 1 will be deleted if you are the author.`"
+            "value": food
           },
           {
             //blank field for spacing
@@ -57,7 +81,7 @@ exports.run = (client, message, args) => {
           },
           {
             "name": "**__The Naughty List__**",
-            "value": "**!jieyin**\nThe *\"purest\"* element on Earth...\n\n**!jasmin**\n:cactus:"
+            "value": naughty_list
           },
           {
             //blank field for spacing

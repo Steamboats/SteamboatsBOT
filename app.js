@@ -12,12 +12,14 @@ mongoose.connect(process.env.MONGO_CONNECTION, {
   useNewUrlParser: true,
   useUnifiedTopology: true
   }, () => {
-    // Ready states (from Mongoose Documentation)
-    // 0: disconnected
-    // 1: connected -- should see this in console if running
-    // 2: connecting
-    // 3: disconnecting
-    console.log(`Mongoose connected with readyState: ${mongoose.connection.readyState}`);
+    // Ready states from mongoose documentation
+    const readyState = {
+      0: 'disconnected',
+      1: 'connected', // Default state if working
+      2: 'connecting',
+      3: 'disconnecting'
+    };
+    console.log(`Mongoose connected with readyState: ${readyState[mongoose.connection.readyState]}`);
 });
 
 // This loop reads the /events/ folder and attaches each event file to the appropriate event.

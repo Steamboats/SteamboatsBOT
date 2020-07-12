@@ -3,8 +3,9 @@ const Food = require('../models/Food');
 
 // Exact copy of upvotes except inc value is -1
 exports.run = async (client, message, args) => {
-  // Sort all food by upvotes in ascending order
   try {
+    const loading = await message.channel.send('Downvoting...');
+
     let id = args[0];
     const foodChoice = await Food.findOneAndUpdate(
       { // find
@@ -22,11 +23,37 @@ exports.run = async (client, message, args) => {
 
     if (!foodChoice) throw new Error("ID doesn't exist");
 
-    message.channel.send(`${foodChoice.title} has been downvoted by ${message.author.username} and now has ${foodChoice.upvotes - 1}`);
+    const embedMessage = {
+      title: 'Successfully Downvoted',
+      color: '#42B549',
+      description: `"**${foodChoice.title}**" has been downvoted by **"${message.author.username}"** and currently has ${foodChoice.upvotes - 1} upvotes.`,
+      footer: {
+        text: 'Y u haf to b such a hater...',
+      },
+      timestamp: new Date(),
+    };
+
+    message.channel
+      .send({
+        embed: embedMessage
+      })
+      .then(() => {
+        // Delete loading message
+        loading.delete();
+      })
+      .catch(console.error);
   } catch(err) {
-    message.channel.send(err.message);
+    const embedMessage = {
+      title: 'An error has occurred',
+      color: '#BA1E42',
+      description: `${err.message}`,
+    }
+
+    message.channel
+      .send({
+        embed: embedMessage
+      })
+      .catch(console.error);
   }
 }
-
-
 
