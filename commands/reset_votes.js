@@ -3,16 +3,15 @@ const Food = require('../models/Food');
 
 exports.run = async (client, message) => {
   try {
-    const loading = await message.channel.send('Resetting...');
 
-    const foodChoice = await Food.find().updateMany(
-    {}, 
-    {
-      $set: {
-        upvotes: 0
-      }
-    }, {
-      multi: true
+    const foodChoice = await Food.updateMany(
+      { //select all food with unvotes != 0
+        upvotes: { $ne:0 }
+      },
+      { // set votes to 0
+        $set: {
+          upvotes: 0
+        }
     });
 
     const embedMessage = {
